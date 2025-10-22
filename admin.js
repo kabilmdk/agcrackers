@@ -1,18 +1,11 @@
-firebase.auth().onAuthStateChanged(user => {
-  if (!user || user.email !== "admin@agcrackers.com") {
-    alert("Unauthorized access");
-    window.location.href = "login.html";
-  } else {
-    loadProducts();
-  }
-});
-
 function addProduct() {
   const name = document.getElementById("name").value;
   const price = parseInt(document.getElementById("price").value);
-  const stock = parseInt(document.getElementById("stock").value);
+  const quantity = parseInt(document.getElementById("quantity").value);
+  const imageUrl = document.getElementById("imageUrl").value;
+  const youtubeLink = document.getElementById("youtubeLink").value;
 
-  db.collection("products").add({ name, price, stock })
+  db.collection("products").add({ name, price, quantity, imageUrl, youtubeLink })
     .then(() => {
       alert("Product added!");
       loadProducts();
@@ -20,15 +13,20 @@ function addProduct() {
 }
 
 function loadProducts() {
-  const list = document.getElementById("productList");
-  list.innerHTML = "";
-
+  const table = document.getElementById("productTable");
+  table.innerHTML = "<tr><th>Name</th><th>Price</th><th>Qty</th><th>Image</th><th>Video</th></tr>";
   db.collection("products").get().then(snapshot => {
     snapshot.forEach(doc => {
-      const data = doc.data();
-      const li = document.createElement("li");
-      li.textContent = `${data.name} - ₹${data.price} - Stock: ${data.stock}`;
-      list.appendChild(li);
+      const d = doc.data();
+      table.innerHTML += `<tr>
+        <td>${d.name}</td>
+        <td>₹${d.price}</td>
+        <td>${d.quantity}</td>
+        <td><img src="${d.imageUrl}" width="50"></td>
+        <td><a href="${d.youtubeLink}" target="_blank">Watch</a></td>
+      </tr>`;
     });
   });
 }
+
+loadProducts();
