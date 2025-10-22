@@ -1,0 +1,20 @@
+<h2>Invoice</h2>
+<div id="invoice"></div>
+<p>Please share this invoice and GPay screenshot to WhatsApp: <strong>91XXXXXXXXXX</strong></p>
+
+<script>
+const customer = JSON.parse(localStorage.getItem("customer"));
+const cart = JSON.parse(localStorage.getItem("finalCart"));
+const div = document.getElementById("invoice");
+
+div.innerHTML = `<strong>Name:</strong> ${customer.name}<br>
+<strong>Phone:</strong> ${customer.phone}<br>
+<strong>Address:</strong> ${customer.address}<br><hr>`;
+
+let total = 0;
+cart.forEach(item => {
+  div.innerHTML += `${item.name} x${item.qty} = ₹${item.price * item.qty}<br>`;
+  total += item.price * item.qty;
+});
+div.innerHTML += `<hr><strong>Total: ₹${total}</strong>`;
+</script>
