@@ -1,16 +1,37 @@
-<h2>Add Product</h2>
-<input type="text" id="name" placeholder="Product Name">
-<input type="number" id="price" placeholder="Price">
-<input type="number" id="quantity" placeholder="Quantity">
-<input type="text" id="imageUrl" placeholder="Image URL">
-<input type="text" id="youtubeLink" placeholder="YouTube Link">
-<button onclick="addProduct()">Add Product</button>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="firebase-config.js"></script>
+</head>
+<body>
+  <h1>Admin Dashboard</h1>
 
-<h2>Product List</h2>
-<table id="productTable"></table>
-<script src="admin.js"></script>
+  <h2>Add Product</h2>
+  <input type="text" id="name" placeholder="Product Name"><br>
+  <input type="number" id="price" placeholder="Price"><br>
+  <input type="number" id="quantity" placeholder="Quantity"><br>
+  <input type="text" id="imageUrl" placeholder="Image URL"><br>
+  <input type="text" id="youtubeLink" placeholder="YouTube Link"><br>
+  <button onclick="addProduct()">Add Product</button>
 
+  <h2>Product List</h2>
+  <table border="1" id="productTable">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Image</th>
+        <th>YouTube</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
 
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-<script src="firebase-config.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>
